@@ -77,6 +77,13 @@ function buildSwiper(){
 		var h = $(document).height() - ($("header").height() + $("#main_bar").height() + $("#sub_bar").height());
 		$('.swiper-container').height(h);
 		mySwiper.reInit();
+		
+		var totalHeight = 0;
+		$(".swiper-slide-active").children().each(function(){
+			totalHeight += $(this).outerHeight(true);
+		});
+		$(".swiper-wrapper, .swiper-slide").height(totalHeight);
+		
 	};
 }
 function contentSwipeLeftHandler(event){
