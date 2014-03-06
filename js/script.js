@@ -31,20 +31,21 @@ function buildSwiper(){
 						mySwiper.reInit();
 						loadedSlides.push(slides[0]);
 						loadedSlides.push(slides[1]);
-						updateSwiperHeight();
 					});
 				});
 			} else {
 				$(".swiper-wrapper").load(slides[0],function(r2){
 					mySwiper.reInit();
 					loadedSlides.push(slides[0]);
-					updateSwiperHeight();
 				});
 			}
 			$('.slides_left').html(slides.length);
 		},
 		onSwiperCreated:function(){
-			updateSwiperHeight();
+			$(".swiper-wrapper, .swiper-slide").height(0);
+			setTimeout(function() {
+				updateSwiperHeight();
+			}, 1000);
 		},
 		onSlideNext: function(s){
 			if(typeof slides[mySwiper.activeIndex+1]!='undefined' && slides.length > loadedSlides.length){
