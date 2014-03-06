@@ -22,6 +22,7 @@ function buildSwiper(){
 		//cssWidthAndHeight: true,
 		//watchActiveIndex: true,
 		resizeReInit: true,
+		updateOnImagesReady: true,
 		onFirstInit: function(s){
 			if(typeof slides[1]!='undefined'){
 				$(".swiper-wrapper").load(slides[1],function(r1){
