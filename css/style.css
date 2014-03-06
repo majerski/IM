@@ -9,7 +9,7 @@ abbr,address,article,aside,audio,b,blockquote,body,canvas,caption,cite,code,dd,d
 .ui-page-active, .ui-content, .left-sidebar, .right-sidebar, .content{height:auto;min-height:100%;overflow:auto;overflow-x:hidden;}
 .left-sidebar{height:0px}
 .left-sidebar.open{height:777px;}
-.left-sidebar.open,.right-sidebar.open{left:0;}
+.left-sidebar.open,.right-sidebar.open{left:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;}
 .left-sidebar, .right-sidebar, .content {-webkit-transition: all 0.3s ease-in-out;-moz-transition: all 0.3s ease-in-out;-ms-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;transition: all 0.3s ease-in-out;}
 #main_bar{clear:both;height:30px;text-align:center;}
 #main_bar h1 {color:#fff;font-size:16px;font-weight:normal;line-height:30px;}
