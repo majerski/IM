@@ -41,7 +41,7 @@ function buildSwiper(){
 			}
 			$('.slides_left').html(slides.length);
 		},
-		onInit:function(){
+		onSwiperCreated:function(){
 			var totalHeight = 0;
 			$(".swiper-slide-active").children().each(function(){
 				totalHeight += $(this).outerHeight(true);
