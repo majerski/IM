@@ -21,6 +21,8 @@ function buildSwiper(){
 		//calculateHeight:true,
 		//cssWidthAndHeight: true,
 		//watchActiveIndex: true,
+		freeMode:true,
+		freeModeFluid: true,
 		resizeReInit: true,
 		updateOnImagesReady: true,
 		onFirstInit: function(s){
