@@ -40,9 +40,9 @@ function buildSwiper(){
 				});
 			}
 			$('.slides_left').html(slides.length);
+			$(".swiper-wrapper, .swiper-slide").height(1);
 		},
 		onSwiperCreated:function(){
-			$(".swiper-wrapper, .swiper-slide").height(1);
 			setTimeout(function() {
 				updateSwiperHeight();
 			}, 3000);
