@@ -12,6 +12,14 @@ function initiateScripts(){
 		toggleRightSideBar();
 	});
 	buildSwiper();
+	var leftSidebar = document.getElementById("leftSidebar");
+	var rightSidebar = document.getElementById("rightSidebar");	
+	leftSidebar.addEventListener("touchmove", function(event){
+		event.preventDefault();
+	}, false);
+	rightSidebar.addEventListener("touchmove", function(event){
+		event.preventDefault();
+	}, false);
 }
 function buildSwiper(){
 	var h = $(document).height() - ($("header").height() + $("#main_bar").height() + $("#sub_bar").height());
