@@ -92,11 +92,13 @@ function toggleLeftSideBar(){
 	$(".ui-page-active .content").toggleClass("open-left");
 	$(".ui-page-active .controls1").toggleClass("active");
 	$(".ui-page-active .left-sidebar").toggleClass("open");
+	$(".ui-page-active .right-sidebar").hide();
 }
 function toggleRightSideBar(){
 	$(".ui-page-active .content").toggleClass("open-right");
 	$(".ui-page-active .controls2").toggleClass("active");
 	$(".ui-page-active .right-sidebar").toggleClass("open");
+	$(".ui-page-active .left-sidebar").hide();
 	if(typeof GoogleMap != 'undefined'){
 		if(!$(".ui-page-active #map_canvas").hasClass("loaded")){
 			$(".ui-page-active .right-sidebar .sidebar-arrow p").html('Łączenie...');
