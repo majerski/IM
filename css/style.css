@@ -3,10 +3,11 @@ abbr,address,article,aside,audio,b,blockquote,body,canvas,caption,cite,code,dd,d
 .ui-page-active {display: block;overflow: auto;overflow-x: hidden;position: absolute;width: 100%;top: 0;left: 0;border: 0;background-color:#000;}
 .left-sidebar, .right-sidebar, .content {display:block;width:100%;}
 .left-sidebar, .right-sidebar {position:absolute;top:0;}
-.left-sidebar {height:777px;left: -100%;background: #131313 url(../img/sidebar-background.jpg) repeat-y right;}
+.left-sidebar {left: -100%;background: #131313 url(../img/sidebar-background.jpg) repeat-y right;}
 .right-sidebar {left: 100%;background: #131313 url(../img/sidebar-background.jpg) repeat-y right;}
 .content {background-color:#000;position:relative}
 .ui-page-active, .ui-content, .left-sidebar, .right-sidebar, .content {height:auto;min-height:100%;overflow:auto;overflow-x:hidden;}
+.left-sidebar{height:777px;}
 .open-left {left:100%;}
 .open-right {left:-100%;}
 .left-sidebar.open,.right-sidebar.open{left:0;}
