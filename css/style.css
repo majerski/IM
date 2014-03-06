@@ -7,7 +7,8 @@ abbr,address,article,aside,audio,b,blockquote,body,canvas,caption,cite,code,dd,d
 .right-sidebar {left: 100%;background: #131313 url(../img/sidebar-background.jpg) repeat-y right;}
 .content {background-color:#000;position:relative}
 .ui-page-active, .ui-content, .left-sidebar, .right-sidebar, .content {height:auto;min-height:100%;overflow:auto;overflow-x:hidden;}
-.left-sidebar{height:777px;}
+.left-sidebar{height:0px}
+.left-sidebar.open{height:777px;}
 .open-left {left:100%;}
 .open-right {left:-100%;}
 .left-sidebar.open,.right-sidebar.open{left:0;}
