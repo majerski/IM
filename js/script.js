@@ -31,26 +31,20 @@ function buildSwiper(){
 						mySwiper.reInit();
 						loadedSlides.push(slides[0]);
 						loadedSlides.push(slides[1]);
+						updateSwiperHeight();
 					});
 				});
 			} else {
 				$(".swiper-wrapper").load(slides[0],function(r2){
 					mySwiper.reInit();
 					loadedSlides.push(slides[0]);
+					updateSwiperHeight();
 				});
 			}
 			$('.slides_left').html(slides.length);
 		},
 		onSwiperCreated:function(){
-			/*
-			var totalHeight = 0;
-			$(".swiper-slide-active").children().each(function(){
-				totalHeight += $(this).outerHeight(true);
-			});
-			$(".swiper-wrapper, .swiper-slide").height(totalHeight);
-			*/
 			updateSwiperHeight();
-			alert('created');
 		},
 		onSlideNext: function(s){
 			if(typeof slides[mySwiper.activeIndex+1]!='undefined' && slides.length > loadedSlides.length){
@@ -64,13 +58,7 @@ function buildSwiper(){
 		onSlideChangeEnd: function(s,d){
 			var actual_slide = parseInt($('.actual_slide').html());
 			d=='next'?$('.actual_slide').html((actual_slide+1)):$('.actual_slide').html((actual_slide-1));
-			/*
-			var totalHeight = 0;
-			$(".swiper-slide-active").children().each(function(){
-				totalHeight += $(this).outerHeight(true);
-			});
-			$(".swiper-wrapper, .swiper-slide").height(totalHeight);
-			*/
+			updateSwiperHeight();
 		}
 	});
 	$("#sub_bar .arrow-right").bind("click",function(){
@@ -83,19 +71,13 @@ function buildSwiper(){
 		var h = $(document).height() - ($("header").height() + $("#main_bar").height() + $("#sub_bar").height());
 		$('.swiper-container').height(h);
 		mySwiper.reInit();
-		/*
-		var totalHeight = 0;
-		$(".swiper-slide-active").children().each(function(){
-			totalHeight += $(this).outerHeight(true);
-		});
-		$(".swiper-wrapper, .swiper-slide").height(totalHeight);
-		*/
+		updateSwiperHeight();
 	};
 }
 function updateSwiperHeight(){
 	var totalHeight = 0;
 	$(".swiper-slide-active").children().each(function(){
-		totalHeight += $(this).outerHeight(true);
+		totalHeight += $(this).outerHeight();
 	});
 	$(".swiper-wrapper, .swiper-slide").height(totalHeight);
 }
