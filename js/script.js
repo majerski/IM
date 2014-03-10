@@ -45,16 +45,16 @@ function buildSwiper(){
 		},
 		onSlideChangeEnd:function(s,d){
 			$('.actual_slide').html((mySwiper.activeIndex+1));
-			if(typeof slides[mySwiper.activeIndex+1]!='undefined' && slides.length > loadedSlides.length && d=='next'){
+			if(typeof slides[mySwiper.activeIndex+1]!='undefined' && slides.length > loadedSlides.length && (d=='next' || (d=='to' && typeof loadedSlides[mySwiper.activeIndex+1]=='undefined'))){
 				$.get(slides[mySwiper.activeIndex+1],function(data){
 					loadedSlides.push(slides[mySwiper.activeIndex+1]);
 					var newSlide = mySwiper.createSlide($(data).html());
 					newSlide.append();
 					updateSwiperHeight();
 				});
+			} else {
+				updateSwiperHeight();
 			}
-			updateSwiperHeight();
-			
 		},
 		onImagesReady:function(){
 			updateSwiperHeight();
@@ -72,7 +72,7 @@ function buildSwiper(){
 			alreadyclickedTimeout=setTimeout(function(){
 				alreadyclicked=false;
 				mySwiper.swipeNext();
-			},300);
+			},200);
 		}
 		return false;
 	});
@@ -86,7 +86,7 @@ function buildSwiper(){
 			alreadyclickedTimeout=setTimeout(function(){
 				alreadyclicked=false;
 				mySwiper.swipePrev();
-			},300);
+			},200);
 		}
 		return false;
 	});
@@ -118,10 +118,10 @@ function updateSwiperHeight(){
 			tError: 'Nie można wgrać zdjęcia.',
 			titleSrc: function(item) {
 				var t = item.el.attr('title');
-				var s = item.el[0].dataset.slide;
+				var s = item.el.data();
 				if(typeof t!='undefined'){
-					if(typeof s!='undefined'){
-						var i = slides.indexOf(s);
+					if(typeof s.slide!='undefined'){
+						var i = slides.indexOf(s.slide);
 						if(i!=mySwiper.activeIndex){
 							return t + '<small><a onclick="swipeTo('+i+')">przejdź do strony produktu</a></small>';
 						} else {
