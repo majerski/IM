@@ -92,7 +92,7 @@ function buildSwiper(){
 	});
 	//window.addEventListener('orientationchange', updateSwiperHeight);
 	window.onresize = function(event) {
-		mySwiper.reInit();
+		//mySwiper.reInit();
 		updateSwiperHeight();
 	};
 }
@@ -104,36 +104,39 @@ function updateSwiperHeight(){
 		});
 		$(".swiper-wrapper, .swiper-slide").height(totalHeight);
 	});
-	$('.magnificPopup').magnificPopup({
-		tClose: 'Zamknij (Esc)',
-		tLoading: 'Wczytuję...',
-		type: 'image',
-		gallery: {
-			enabled: true,
-			tPrev: 'Poprzednie',
-			tNext: 'Następne',
-			tCounter: '%curr% z %total%'
-		},
-		image: {
-			tError: 'Nie można wgrać zdjęcia.',
-			titleSrc: function(item) {
-				var t = item.el.attr('title');
-				var s = item.el.data();
-				if(typeof t!='undefined'){
-					if(typeof s.slide!='undefined'){
-						var i = slides.indexOf(s.slide);
-						if(i!=mySwiper.activeIndex){
-							return t + '<small><a onclick="swipeTo('+i+')">przejdź do strony produktu</a></small>';
+	var mp = $('.magnificPopup');
+	if(typeof mp != 'undefined' && mp.length>0){
+		$('.magnificPopup').magnificPopup({
+			tClose: 'Zamknij (Esc)',
+			tLoading: 'Wczytuję...',
+			type: 'image',
+			gallery: {
+				enabled: true,
+				tPrev: 'Poprzednie',
+				tNext: 'Następne',
+				tCounter: '%curr% z %total%'
+			},
+			image: {
+				tError: 'Nie można wgrać zdjęcia.',
+				titleSrc: function(item) {
+					var t = item.el.attr('title');
+					var s = item.el.data();
+					if(typeof t!='undefined'){
+						if(typeof s.slide!='undefined'){
+							var i = slides.indexOf(s.slide);
+							if(i!=mySwiper.activeIndex){
+								return t + '<small><a onclick="swipeTo('+i+')">przejdź do strony produktu</a></small>';
+							} else {
+								return t;
+							}
 						} else {
 							return t;
 						}
-					} else {
-						return t;
 					}
 				}
 			}
-		}
-	});
+		});
+	}
 }
 function swipeTo(index){
 	mySwiper.swipeTo(index, 300, true);
@@ -195,4 +198,83 @@ function toggleRightSideBar(){
 			geolocationError();
 		}
 	}, 10000);
+}
+
+var separator = '|||';
+function schowekAdd(page,title){
+	var notExists = true;
+	var s = new Array();
+	var i = {'item':page + separator + title};
+	var schowekSet = localStorage.getItem('schowek');
+	if(schowekSet){
+		var schowek = JSON.parse(localStorage.getItem('schowek'));
+		schowek.map(function(d){
+			if(d.item == page + separator + title){
+				notExists = false;
+			}
+		});
+		var array = $.map(schowek, function(value, index) {
+			return [value];
+		});
+		s = array;
+	}
+	if(notExists){
+		s.push(i);
+	}
+	localStorage.setItem('schowek', JSON.stringify(s));
+}
+function schowekRemove(page,title){
+	var s = new Array();
+	var schowekSet = localStorage.getItem('schowek');
+	if(schowekSet){
+		var schowek = JSON.parse(localStorage.getItem('schowek'));
+		schowek.map(function(d){
+			if(d.item == page + separator + title){
+				delete d.item;
+			}
+		});
+		var array = $.map(schowek, function(value, index) {
+			return [value];
+		});
+		s = array;
+		localStorage.setItem('schowek', JSON.stringify(s));
+		var tr = document.getElementById(page+title);
+		tr.outerHTML = "";
+		delete tr;
+	}
+}
+function schowekList(){
+	var schowekDiv = document.getElementById('schowek');
+	var schowekSet = localStorage.getItem('schowek');
+	if(schowekSet){
+		var table = document.createElement('table');
+		var rows = 0;
+		var schowek = JSON.parse(localStorage.getItem('schowek'));
+		for (var key in schowek) {
+			if(schowek.hasOwnProperty(key)) {
+				var obj = schowek[key];
+				for (var prop in obj) {
+					if (obj.hasOwnProperty(prop)) {
+						var s = obj[prop].split(separator);
+						var row = table.insertRow(rows);
+						$(row).attr('id',s[0]+s[1]);
+						var cell1 = row.insertCell(0);
+						var cell2 = row.insertCell(1);
+						$(cell2).width(120);
+						cell1.innerHTML = "<a onclick=\"schowekGo('"+s[0]+"')\">"+s[1]+"</a>";
+						var removeButton = document.createElement('a');
+						removeButton.addEventListener('click', function(){schowekRemove(s[0],s[1]);}, false);
+						removeButton.innerHTML = 'usuń z listy';
+						removeButton.className = 'ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-left';
+						cell2.appendChild(removeButton);
+						rows++;
+					}
+				}
+			}
+		}
+		schowekDiv.appendChild(table);
+	}
+}
+function schowekGo(page){
+	console.log(page);
 }
