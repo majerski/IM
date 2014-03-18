@@ -1,6 +1,10 @@
 /*! waitForImages jQuery Plugin 2013-07-20 */
 !function(a){var b="waitForImages";a.waitForImages={hasImageProperties:["backgroundImage","listStyleImage","borderImage","borderCornerImage","cursor"]},a.expr[":"].uncached=function(b){if(!a(b).is('img[src!=""]'))return!1;var c=new Image;return c.src=b.src,!c.complete},a.fn.waitForImages=function(c,d,e){var f=0,g=0;if(a.isPlainObject(arguments[0])&&(e=arguments[0].waitForAll,d=arguments[0].each,c=arguments[0].finished),c=c||a.noop,d=d||a.noop,e=!!e,!a.isFunction(c)||!a.isFunction(d))throw new TypeError("An invalid callback was supplied.");return this.each(function(){var h=a(this),i=[],j=a.waitForImages.hasImageProperties||[],k=/url\(\s*(['"]?)(.*?)\1\s*\)/g;e?h.find("*").addBack().each(function(){var b=a(this);b.is("img:uncached")&&i.push({src:b.attr("src"),element:b[0]}),a.each(j,function(a,c){var d,e=b.css(c);if(!e)return!0;for(;d=k.exec(e);)i.push({src:d[2],element:b[0]})})}):h.find("img:uncached").each(function(){i.push({src:this.src,element:this})}),f=i.length,g=0,0===f&&c.call(h[0]),a.each(i,function(e,i){var j=new Image;a(j).on("load."+b+" error."+b,function(a){return g++,d.call(i.element,g,f,"load"==a.type),g==f?(c.call(h[0]),!1):void 0}),j.src=i.src})})}}(jQuery);
 
+var mySwiper;
+var loadedSlides = new Array();
+var separator = '|||';
+
 $(document).on("pageload",function() {
 	initiateScripts();
 });
@@ -15,10 +19,13 @@ function initiateScripts(){
 		toggleRightSideBar();
 	});
 	buildSwiper();
+	var schowekSet = localStorage.getItem('schowek');
+	if(schowekSet){
+		if(typeof schowekUrlPre=='undefined')schowekUrlPre='../../';
+		$(".controls2").prepend('<a href="'+schowekUrlPre+'schowek.html" style="margin-right:10px" data-ajax="false" id="schowekIcon"><img src="'+schowekUrlPre+'img/icon-clipboard.png" alt=""></a>');
+	}
 }
-var mySwiper;
 function buildSwiper(){
-	var loadedSlides = new Array();
 	mySwiper = $('.swiper-container').swiper({
 		resizeReInit: true,
 		updateOnImagesReady: true,
@@ -32,6 +39,15 @@ function buildSwiper(){
 						loadedSlides.push(slides[0]);
 						loadedSlides.push(slides[1]);
 						updateSwiperHeight();
+						
+						if(getHash()){
+							var hash = getHash();
+							if(typeof slides.indexOf(hash)!='undefined'){
+								var position = slides.indexOf(hash);
+								swipeTo(position);
+							}
+						}
+						
 					});
 				});
 			} else {
@@ -139,7 +155,19 @@ function updateSwiperHeight(){
 	}
 }
 function swipeTo(index){
-	mySwiper.swipeTo(index, 300, true);
+	if(index>(mySwiper.slides.length-1)){
+		var roznica = index - (mySwiper.slides.length-1);
+		for(var i=mySwiper.slides.length;i<(roznica+mySwiper.slides.length);i++){
+			$.get(slides[i],function(data){
+				loadedSlides.push(slides[i]);
+				var newSlide = mySwiper.createSlide($(data).html());
+				newSlide.append();
+				mySwiper.swipeTo(index, 300, true);
+			});
+		}
+	} else {
+		mySwiper.swipeTo(index, 300, true);
+	}
 	$.magnificPopup.close();
 }
 function contentSwipeLeftHandler(event){
@@ -199,8 +227,6 @@ function toggleRightSideBar(){
 		}
 	}, 10000);
 }
-
-var separator = '|||';
 function schowekAdd(page,title){
 	var notExists = true;
 	var s = new Array();
@@ -276,5 +302,13 @@ function schowekList(){
 	}
 }
 function schowekGo(page){
-	console.log(page);
+	var s = page.split("/");
+	window.location.href = "pages/"+s[0]+"/index.html#"+s[1];
+}
+function getHash() {
+	if (window.location.hash) {
+		var hash = window.location.hash.substring(1);
+		if (hash.length === 0) { return false; }
+		else { return hash; }
+	} else { return false; }
 }

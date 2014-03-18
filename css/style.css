@@ -106,4 +106,5 @@ img.img-responsive {display: block;max-width: 100%;height: auto;margin-left: aut
 /* tm */
 #schowek table{width:100%;margin-top:10px}
 #schowek table td{padding:5px 10px}
-#schowek table td .ui-btn{margin:0px;padding:5px 10px 5px 40px;font-size:14px;font-weight:normal}
+#schowek table td .ui-btn{margin:0px;padding:5px 10px 5px 40px;font-size:14px;font-weight:normal;background-color:#da0606;color:#fff;border-color:#b21111}
+.ui-btn.ui-btn-add{padding:5px 10px 5px 40px;font-size:14px;background-color:#5caf38;color:#fff;border-color:#4ea02a;text-shadow:0 1px 0 #4ea02a}
