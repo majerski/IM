@@ -264,7 +264,7 @@ function schowekRemove(page,title){
 		});
 		s = array;
 		localStorage.setItem('schowek', JSON.stringify(s));
-		var tr = document.getElementById(page+title);
+		var tr = document.getElementById(page);
 		tr.outerHTML = "";
 		delete tr;
 	}
@@ -283,16 +283,12 @@ function schowekList(){
 					if (obj.hasOwnProperty(prop)) {
 						var s = obj[prop].split(separator);
 						var row = table.insertRow(rows);
-						$(row).attr('id',s[0]+s[1]);
+						$(row).attr('id',s[0]);
 						var cell1 = row.insertCell(0);
 						var cell2 = row.insertCell(1);
 						$(cell2).width(120);
 						cell1.innerHTML = "<a onclick=\"schowekGo('"+s[0]+"')\">"+s[1]+"</a>";
-						var removeButton = document.createElement('a');
-						removeButton.addEventListener('click', function(){schowekRemove(s[0],s[1]);}, false);
-						removeButton.innerHTML = 'usuń z listy';
-						removeButton.className = 'ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-left';
-						cell2.appendChild(removeButton);
+						cell2.innerHTML = "<a class=\"ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-left\" onclick=\"schowekRemove('"+s[0]+"','"+s[1]+"')\">usuń z listy</a>";
 						rows++;
 					}
 				}

@@ -4,8 +4,8 @@ abbr,address,article,aside,audio,b,blockquote,body,canvas,caption,cite,code,dd,d
 .ui-page-active{display:block;overflow:auto;overflow-x:hidden;position:static;width:100%;border:0;background-color:#000;}
 .left-sidebar, .right-sidebar, .content {display:block;width:100%;}
 .left-sidebar, .right-sidebar {position:absolute;top:0;z-index:10}
-.left-sidebar {left: -100%;background: #131313 url(../img/sidebar-background.jpg) repeat-y right;}
-.right-sidebar {left: 100%;background: #131313 url(../img/sidebar-background.jpg) repeat-y right;}
+.left-sidebar {left:-100%;background:#131313 url(../img/sidebar-background.jpg) repeat-y right;}
+.right-sidebar {left:100%;background:#131313 url(../img/sidebar-background.jpg) repeat-y right;}
 .content {background-color:#000}
 .ui-page-active, .ui-content, .left-sidebar, .right-sidebar, .content{height:auto;min-height:100%;overflow:auto;overflow-x:hidden;}
 .left-sidebar{height:0px}
@@ -49,13 +49,13 @@ abbr,address,article,aside,audio,b,blockquote,body,canvas,caption,cite,code,dd,d
 header {height:46px;width:100%;background:#2c2c2c url(../img/header-background.jpg) top left repeat-x;}
 .controls {background: #171717;float: left;margin: 4px 0 0 10px;padding: 3px;}
 .controls2 {float: right;margin: 4px 10px 0 0;}
-.controls a, .controls img {display: inline-block;}
-.controls a {width: 35px;height: 30px;text-align: center;line-height: 17px;cursor: pointer;border-top: 1px solid #5c5c5c;background: #212121 url(../img/controls.jpg) repeat-x top;padding: 6px 9px 0 9px;}
-.controls a:active { padding: 7px 9px;opacity: 0.65;}
+.controls a, .controls img {display: inline-block;vertical-align:top}
+.controls a {width:35px;height:30px;text-align:center;line-height: 17px;cursor: pointer;border-top: 1px solid #5c5c5c;background: #212121 url(../img/controls.jpg) repeat-x top;padding: 6px 9px 0 9px;}
+.controls a:active { padding:7px 9px 0 9px;opacity:0.65;}
 .controls.active img {opacity: 0.35;}
 header .logo {position: absolute;top: 9px;left: 50%;margin-left: -72px;}
 header .logo img {width: 145px;}
-.main-site {position: relative;min-height: 100%;background-color: #000;color: #fff;padding:0;}
+.main-site {position:relative;min-height:100%;background-color:#000;color:#fff;padding:0;}
 img.img-responsive {display: block;max-width: 100%;height: auto;margin-left: auto;margin-right: auto;}
 .sidebar-arrow {width: 100%;height: 46px;position: absolute;top: 0;z-index: 9;background: #2c2c2c url(../img/header-background.jpg) top left repeat-x;color: #fff;}
 .sidebar-arrow a[data-swipe] {display: block;width: 41px;height: 36px;margin-top: 4px;position: relative;cursor: pointer;z-index: 9;}
@@ -104,7 +104,24 @@ img.img-responsive {display: block;max-width: 100%;height: auto;margin-left: aut
 .description {font-size:16px; line-height:1.35;}
 
 /* tm */
+#schowek{margin-top:46px;}
 #schowek table{width:100%;margin-top:10px}
 #schowek table td{padding:5px 10px}
 #schowek table td .ui-btn{margin:0px;padding:5px 10px 5px 40px;font-size:14px;font-weight:normal;background-color:#da0606;color:#fff;border-color:#b21111}
 .ui-btn.ui-btn-add{padding:5px 10px 5px 40px;font-size:14px;background-color:#5caf38;color:#fff;border-color:#4ea02a;text-shadow:0 1px 0 #4ea02a}
+.text-center{text-align:center}
+.cover-bg{width:100%;height:100%;background: url('../img/app_bg3.jpg') no-repeat center center fixed; -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}
+.main-categories{width:460px;padding-top:30px;margin-bottom:15px;margin-left:auto;margin-right:auto;}
+.category-icon{float:left;width:100px;height:100px;text-align:center;margin:0 15px 15px 0}
+.category-icon a,.category-icon a:hover,.category-icon a:active,.category-icon a:focus,.category-icon a:visited{color:#fff;text-decoration:none}
+.category-icon p{display:block;font-size:12px;font-weight:normal;padding:3px 0;background-color:#000;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;}
+@media (max-width:480px){
+	.main-categories{width:450px}
+	.category-icon{margin:0 10px 10px 0}
+}
+@media (max-width:320px){
+	.main-categories{width:100%}
+	.category-icon{width:62px;height:90px;margin:0 15px 15px 0;overflow:hidden}
+	.category-icon img{width:62px}
+	.category-icon p{font-size:11px}
+}
