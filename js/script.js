@@ -22,7 +22,7 @@ function initiateScripts(){
 	var schowekSet = localStorage.getItem('schowek');
 	if(schowekSet){
 		if(typeof schowekUrlPre=='undefined')schowekUrlPre='../../';
-		$(".controls2").prepend('<a href="'+schowekUrlPre+'schowek.html" style="margin-right:10px" data-ajax="false" id="schowekIcon"><img src="'+schowekUrlPre+'img/icon-clipboard.png" alt=""></a>');
+		$(".controls2").prepend('<a href="'+schowekUrlPre+'schowek.html" data-ajax="false" id="schowekIcon"><img src="'+schowekUrlPre+'img/icon-clipboard.png" alt=""></a>');
 	}
 }
 function buildSwiper(){
