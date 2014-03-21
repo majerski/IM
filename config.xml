@@ -6,10 +6,10 @@
         id        = "com.phonegap.hello-world"
         version   = "1.0">
 
-    <name>IM Katalog</name>
+    <name>Inter Motors Katalog 2014</name>
 
     <description>
-        Katalog produktów Inter Motors z 2014 roku. Ponad 2000 pozycji w ekstremalnej oprawie.
+        Katalog produktów Inter Motors z 2014 roku. Ponad 1000 pozycji w ekstremalnej oprawie.
     </description>
 
     <author href="http://arcontact.pl" email="contact@arcontact.pl">
