@@ -41,9 +41,9 @@ abbr,address,article,aside,audio,b,blockquote,body,canvas,caption,cite,code,dd,d
 .left-sidebar li{list-style: none;background: #1c1c1c url(../img/sidebar-list.jpg) top left repeat-x; border-bottom: 1px solid #000000; font-size: 12px;line-height: 12px;padding-top:7px;padding-bottom:7px;color: #fff;text-shadow: 0px 1px 1px #000;}
 .left-sidebar li .section {display:block; width:5px; height:28px; float:left; margin-right:10px;}
 .left-sidebar li:active {background: #303030 url(../img/sidebar-list-click.jpg) top left repeat-x;}
-.left-sidebar a {font-size:14px;}
-.left-sidebar a, aside a:visited {padding: 8px 20px;display: block;font-weight: bold;color: #e2e2e2 !important;text-decoration: none;}
-.left-sidebar a:hover {color: #c6c6c6;}
+/*.left-sidebar a {font-size:14px;}*/
+/*.left-sidebar a, aside a:visited {padding: 8px 20px;display: block;font-weight: bold;color: #e2e2e2 !important;text-decoration: none;}*/
+/*.left-sidebar a:hover {color: #c6c6c6;}*/
 .left-sidebar li.active a {color: #fe2a46;}
 .ui-bar-a .ui-shadow,.ui-bar-c,.ui-bar-d,.ui-bar-e,.ui-body-a,.ui-body-b,.ui-body-c,.ui-body-d,.ui-body-e,.ui-btn-active,.ui-btn-down-a,.ui-btn-down-b,.ui-btn-down-c,.ui-btn-down-d,.ui-btn-down-e,.ui-btn-hover-a,.ui-btn-hover-b,.ui-btn-hover-c,.ui-btn-hover-d,.ui-btn-hover-e,.ui-btn-up-a,.ui-btn-up-b,.ui-btn-up-c,.ui-btn-up-d,.ui-btn-up-e,.ui-overlay-c,.ui-overlay-shadow,.ui-shadow{text-shadow: none;box-shadow: none;-webkit-box-shadow: none}
 header {height:46px;width:100%;background:#2c2c2c url(../img/header-background.jpg) top left repeat-x;}
