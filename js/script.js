@@ -197,7 +197,7 @@ function contentSwipeRightHandler(event){
 function toggleLeftSideBar(){
 	$(".ui-page-active .content").toggleClass("open-left");
 	$(".ui-page-active .controls1").toggleClass("active");
-	$(".ui-page-active .left-sidebar").toggleClass("open");
+	$(".ui-page-active .left-sidebar").toggleClass("open").height(($(".ui-page-active .content").height()-122));
 	$(".ui-page-active .right-sidebar").hide();
 }
 function toggleRightSideBar(){
